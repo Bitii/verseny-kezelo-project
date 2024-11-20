@@ -41,6 +41,6 @@ class Versenyek extends Component
     }
     public function render()
     {
-        return view('livewire.versenyek');
+        return view('livewire.versenyHozzaad');
     }
 }

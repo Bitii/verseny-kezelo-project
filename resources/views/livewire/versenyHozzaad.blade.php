@@ -39,7 +39,7 @@
                 </select>
             </div>
             @if ($errors->any())
-            <div class="error">
+            <div class="alert alert-warning">
                 <ul>
                     @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -48,7 +48,7 @@
             </div>
             @endif
             <div class="d-flex justify-content-evenly p-3">
-                <input class="btn btn-primary" wire:click="add" type="submit" value="Hozzáadás" >
+                <input class="btn btn-primary" type="submit" value="Hozzáadás" >
                 <input type="button" value="Versenyek" class="btn btn-primary">
             </div>
         </form>
