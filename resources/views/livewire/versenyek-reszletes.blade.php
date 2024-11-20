@@ -1,33 +1,34 @@
-<div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h1>Verseny neve: {{ $verseny->verseny_nev }}</h1>
-                <p>Verseny éve: {{ $verseny->verseny_ev }}</p>
-                <p>Pontok helyes válaszért: {{ $verseny->pontok_jo }}</p>
-                <p>Pontok helytelen válaszért: {{ $verseny->pontok_rossz }}</p>
-                <p>Pontok üresen hagyott válaszért: {{ $verseny->pontok_ures }}</p>
-                <p>Verseny nyelve: {{ $verseny->elerheto_nyelvek }}</p>
-            </div>
-            {{-- gombok a forduló hozzáadásához és vissza gomb --}}
-            <div class="col-md-12">
-                <a href="/versenyek/{{ $verseny->verseny_szamId }}/forduloAdd" class="btn btn-primary">Forduló
-                    hozzáadása</a>
-                <a href="/versenyek" wire:navigate class="btn btn-primary">Vissza</a>
-            </div>
-            {{-- versenyhez tartozó fordulók kilistázása --}}
-            <div class="col-md-12">
-                <h2>Fordulók</h2>
-                <ul class="list-group">
-                    @foreach ($fordulok as $fordulo)
-                        <li
-                            class="list-group
-                    -item d-flex justify-content-between align-items-center">
-                            <span>{{ $fordulo->fordulo_nev }} - {{ $fordulo->fordulo_szam }}</span>
-                            <a href="/versenyek/{{ $verseny->verseny_szamId }}/fordulok/{{ $fordulo->fordulo_szamId }}"
-                                wire:navigate class="btn btn-info btn-sm">Részletek</a>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-secondary text-white text-center">
+                    <h2 class="m-0">{{ $verseny->verseny_nev }}</h2>
+                </div>
+                <div class="card-body">
+                    <div class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span><strong>Verseny éve:</strong> {{ $verseny->verseny_ev }}</span>
                         </li>
-                    @endforeach
-                </ul>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span><strong>Pontok helyes válaszért:</strong> {{ $verseny->pontok_jo }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span><strong>Pontok helytelen válaszért:</strong> {{ $verseny->pontok_rossz }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span><strong>Pontok üresen hagyott válaszért:</strong> {{ $verseny->pontok_ures }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span><strong>Verseny nyelve:</strong> {{ $verseny->elerheto_nyelvek }}</span>
+                        </li>
+                    </div>
+                </div>
+                <div class="card-footer d-flex justify-content-between">
+                    <a href="/versenyek/{{ $verseny->verseny_szamId }}/forduloAdd" class="btn btn-primary btn-lg">Forduló hozzáadása</a>
+                    <a href="/versenyek" wire:navigate class="btn btn-secondary btn-lg">Vissza</a>
+                </div>
             </div>
         </div>
+    </div>
+</div>
