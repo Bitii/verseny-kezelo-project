@@ -6,7 +6,7 @@ use Livewire\Component;
 use Illuminate\Http\Request;
 use App\Models\Verseny;
 
-class Versenyek extends Component
+class VersenyHozzaad extends Component
 {
     public $name;
     public $year;
@@ -37,7 +37,7 @@ class Versenyek extends Component
         $verseny->elerheto_nyelvek = $this->language;
         $verseny->save();
 
-
+        redirect()->to('/versenyek');
     }
     public function render()
     {
