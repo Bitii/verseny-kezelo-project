@@ -4,7 +4,6 @@
             <div class="card shadow-sm">
                 <div class="card-header bg-secondary text-white text-center">
                     <h4 class="m-0">Forduló hozzáadása</h4>
-                    {{ $verseny_szamId }}
                 </div>
                 <div class="card-body">
                     <form wire:submit.prevent="save">

@@ -36,6 +36,7 @@
                         @foreach($fordulok as $fordulo)
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <span>{{$fordulo->fordulo_nev}}</span>
+                            <a href="/fordulo/{{$fordulo->forduloId}}" wire:navigate class="btn btn-info btn-sm">Részletek</a>
                         </li>
                         @endforeach
                     </div>
