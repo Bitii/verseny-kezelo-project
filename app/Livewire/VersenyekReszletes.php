@@ -21,6 +21,6 @@ class VersenyekReszletes extends Component
     }
     public function render()
     {
-        return view('livewire.versenyek-reszletes');
+        return view('livewire.versenyekReszletes');
     }
 }

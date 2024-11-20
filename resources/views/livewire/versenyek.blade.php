@@ -8,8 +8,8 @@
                 <ul class="list-group">
                     @foreach ($versenyek as $verseny)
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <span>{{ $verseny->verseny_nev }} - {{ $verseny->verseny_ev }}</span>
-                            <a href="/versenyek/{{$verseny->verseny_szamId}}" wire:navigate class="btn btn-info btn-sm"  >Részletek</a>
+                            <span>{{ $verseny->verseny_nev }} - {{ $verseny->verseny_ev }} - {{$verseny->verseny_szamId}}</span>
+                            <a href="/versenyek/{{$verseny->verseny_szamId}}" wire:navigate class="btn btn-info btn-sm">Részletek</a>
                         </li>
                     @endforeach
                 </ul>
