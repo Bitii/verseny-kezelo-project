@@ -1,1 +1,30 @@
-@import 'bootstrap/scss/bootstrap';
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+
+$custom-theme-colors:(
+/* Primary Colors */
+    "primary-100": #f0f4ff,
+    "primary-200": #d9e2ff,
+    "primary-300": #a6c1ff,
+    "primary-400": #598bff,
+    "primary-500": #3366ff,
+    "primary-600": #274bdb,
+    "primary-700": #1a34b8,
+    "primary-800": #102694,
+    "primary-900": #091c7a,
+/* Secondary Colors */
+    "secondary-100": #f8f8f8,
+    "secondary-200": #f0f0f0,
+    "secondary-300": #e3e3e3,
+    "secondary-400": #c1c1c1,
+    "secondary-500": #a8a8a8,
+    "secondary-600": #8f8f8f,
+    "secondary-700": #6f6f6f,
+    "secondary-800": #4f4f4f,
+    "secondary-900": #333333,
+
+);
+
+$theme-colors: map-merge($theme-colors, $custom-theme-colors);
+
+@import '../../node_modules/bootstrap/scss/bootstrap.scss';
