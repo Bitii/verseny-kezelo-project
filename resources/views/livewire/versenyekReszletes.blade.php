@@ -28,6 +28,18 @@
                     <a href="/versenyek/{{ $verseny->verseny_szamId }}/forduloAdd" class="btn btn-primary btn-lg">Forduló hozzáadása</a>
                     <a href="/versenyek" wire:navigate class="btn btn-secondary btn-lg">Vissza</a>
                 </div>
+                <div class="card-body">
+                    <div class="card-header bg-secondary text-white text-center">
+                        <h2 class="m-0">{{ $verseny->verseny_nev }} - fordulói</h2>
+                    </div>
+                    <div class="list-group">
+                        @foreach($fordulok as $fordulo)
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span>{{$fordulo->fordulo_nev}}</span>
+                        </li>
+                        @endforeach
+                    </div>
+                </div>
             </div>
         </div>
     </div>

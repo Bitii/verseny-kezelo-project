@@ -30,6 +30,7 @@ class ForduloHozzaad extends Component
             $fordulo->idopont = $this->idopont;
             $fordulo->verseny_szamId = $this->verseny_szamId;
             $fordulo->save();
+            $this->reset();
 
             session()->flash('message', 'A forduló sikeresen hozzáadva!');
         } catch (\Exception $e) {

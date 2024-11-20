@@ -4,7 +4,7 @@
             <div class="card shadow-sm">
                 <div class="card-header bg-secondary text-white text-center">
                     <h4 class="m-0">Forduló hozzáadása</h4>
-                    {{ $verseny_szamId}}
+                    {{ $verseny_szamId }}
                 </div>
                 <div class="card-body">
                     <form wire:submit.prevent="save">
@@ -36,8 +36,13 @@
                                 </ul>
                             </div>
                         @endif
+                        @if (session()->has('message'))
+                            <div class="alert alert-success">
+                                {{ session('message') }}
+                            </div>
+                        @endif
 
-                        
+
                         <!-- Gombok elrendezése -->
                         <div class="d-flex justify-content-between">
                             <button type="submit" class="btn btn-primary">Hozzáad</button>
