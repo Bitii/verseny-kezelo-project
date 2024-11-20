@@ -1,6 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Livewire\Index;
+use App\Livewire\Versenyek;
 
-Route::get('/', Index::class);
+Route::get('/', Versenyek::class);
