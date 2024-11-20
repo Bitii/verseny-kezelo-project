@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        
+        //5db user létrehozása
+        User::factory(5)->create();
     }
 }
