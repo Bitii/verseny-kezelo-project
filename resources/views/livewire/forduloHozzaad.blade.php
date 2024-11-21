@@ -45,7 +45,7 @@
                         <!-- Gombok elrendezése -->
                         <div class="d-flex justify-content-between">
                             <button type="submit" class="btn btn-primary">Hozzáad</button>
-                            <a href="/versenyek" wire:navigate class="btn btn-secondary">Vissza</a>
+                            <a href="/versenyek/{{$verseny_szamId}}" wire:navigate class="btn btn-secondary">Vissza</a>
                         </div>
                     </form>
                 </div>

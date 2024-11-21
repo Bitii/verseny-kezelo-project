@@ -25,7 +25,7 @@
                     </div>
                 </div>
                 <div class="card-footer d-flex justify-content-between">
-                    <a href="/versenyek/{{ $verseny->verseny_szamId }}/forduloAdd" class="btn btn-primary btn-lg">Forduló hozzáadása</a>
+                    <a href="/versenyek/{{ $verseny->verseny_szamId }}/forduloAdd" class="btn btn-primary btn-lg" wire:navigate>Forduló hozzáadása</a>
                     <a href="/versenyek" wire:navigate class="btn btn-secondary btn-lg">Vissza</a>
                 </div>
                 <div class="card-body">
