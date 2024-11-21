@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+use App\Models\Verseny;
 
 return new class extends Migration
 {
@@ -13,9 +14,9 @@ return new class extends Migration
     {
         Schema::create('fordulok', function (Blueprint $table) {
             $table->id('forduloId')->primary();
+            $table->foreignIdFor(Verseny::class, 'verseny_szamId');
             $table->string('fordulo_nev', 100);
             $table->dateTime('idopont');
-            $table->foreignId('verseny_szamId')->references('verseny_szamId')->on('versenyek');
         });
     }
 

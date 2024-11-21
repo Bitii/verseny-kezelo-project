@@ -7,11 +7,15 @@ use App\Models\User;
 
 class ForduloReszletes extends Component
 {
+    public $felhasznalok;
     public $selectedUsers = [];
 
+    public function mount(){
+        $this->felhasznalok = User::all();
+    }
     public function render()
     {
-        $felhasznalok = User::all();
-        return view('livewire.forduloReszletes', ['felhasznalok' => $felhasznalok]);
+        
+        return view('livewire.forduloReszletes', ['felhasznalok' => $this->felhasznalok]);
     }
 }

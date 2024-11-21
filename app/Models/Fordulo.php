@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Fordulo extends Model
 {
@@ -24,5 +25,9 @@ class Fordulo extends Model
             'fordulo_nev' => 'string',
             'idopont' => 'date',
         ];
+    }
+
+    public function verseny(): BelongsTo{
+        return $this->belongsTo(Verseny::class, 'verseny_szamId');
     }
 }
