@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Livewire\Attributes\Validate;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -15,27 +14,28 @@ class Verseny extends Model
     protected $primaryKey = 'verseny_szamId';
     public $timestamps = false;
     protected $fillable = [
-        'name',
-        'year',
-        'points',
-        'badpoints',
-        'emptypoints',
-        'language'
+        'verseny_nev',
+        'verseny_ev',
+        'pontok_jo',
+        'pontok_rossz',
+        'pontok_ures',
+        'elerheto_nyelv'
     ];
 
     protected function casts(): array
     {
         return [
-            'name' => 'string',
-            'year' => 'integer',
-            'points' => 'integer',
-            'badpoints' => 'integer',
-            'emptypoints' => 'integer',
-            'language' => 'string'
+            'verseny_nev' => 'string',
+            'verseny_ev' => 'integer',
+            'pontok_jo' => 'integer',
+            'pontok_rossz' => 'integer',
+            'pontok_ures' => 'integer',
+            'elerheto_nyelv' => 'string'
         ];
     }
 
-    public function fordulok(): HasMany{
+    public function fordulok(): HasMany
+    {
         return $this->hasMany(Fordulo::class, 'verseny_szamId');
     }
 }

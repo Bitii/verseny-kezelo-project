@@ -65,7 +65,6 @@ class ForduloReszletes extends Component
         $versenyzo = Versenyzok::find($versenyzo_id);
         $versenyzo->delete();
 
-        // Update the versenyzok variable
         $this->versenyzok = Versenyzok::where('forduloId', $this->fordulok->first()->forduloId)->get();
     }
 

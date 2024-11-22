@@ -3,13 +3,12 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
 use App\Models\Verseny;
+use App\Rules\VersenySzabaly;
 
 class VersenyHozzaad extends Component
 {
-    public string $name;
+    public string $name = '';
     public int $year;
     public int $points;
     public int $badpoints;
@@ -17,17 +16,15 @@ class VersenyHozzaad extends Component
     public string $language;
     public string $message;
 
-
     public function save()
     {
-
         $this->validate([
-            "name" => 'required|unique:versenyek,verseny_nev',
-            "year" => 'required|integer|min:2000|unique:versenyek,verseny_ev',
-            "points" => 'required|integer',
-            "badpoints" => 'required|integer',
-            "emptypoints" => 'required|integer',
-            "language" => 'required',
+            'name' => ['required', 'string', new VersenySzabaly($this->name, $this->year)],
+            'year' => 'required|integer',
+            'points' => 'required|integer',
+            'badpoints' => 'required|integer',
+            'emptypoints' => 'required|integer',
+            'language' => 'required|string'
         ]);
 
         try {
@@ -40,6 +37,7 @@ class VersenyHozzaad extends Component
             $verseny->elerheto_nyelv = $this->language;
             $verseny->save();
 
+            $this->reset('name', 'year', 'points', 'badpoints', 'emptypoints', 'language');
             session()->flash('message', 'A verseny sikeresen hozzáadva!');
         } catch (\Exception $e) {
             session()->flash('error', 'Hiba történt a verseny hozzáadásakor: ' . $e->getMessage());
