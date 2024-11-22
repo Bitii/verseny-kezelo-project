@@ -10,8 +10,7 @@
                     <ul class="list-group">
                         @foreach ($felhasznalok as $felhasznalo)
                             <li class="list-group-item d-flex align-items-center">
-                                <input type="checkbox" class="form-check-input me-2" wire:model="selectedUsers"
-                                    value="{{ $felhasznalo->id }}">
+                                <input type="checkbox" class="form-check-input me-2" wire:model="selectedUsers">
                                 <span>{{ $felhasznalo->vezeteknev }} {{ $felhasznalo->keresztnev }}</span>
                             </li>
                         @endforeach
@@ -46,10 +45,7 @@
                 </div>
                 <div class="card-body">
                     <ul class="list-group">
-                        <!-- Példa versenyzők -->
-                        <li class="list-group-item">Versenyző 1</li>
-                        <li class="list-group-item">Versenyző 2</li>
-                        <li class="list-group-item">Versenyző 3</li>
+                        
                     </ul>
                 </div>
             </div>

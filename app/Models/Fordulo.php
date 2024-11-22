@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -15,8 +16,8 @@ class Fordulo extends Model
     protected $primaryKey = 'forduloId';
     public $timestamps = false;
     protected $fillable = [
-        'fordulo_nev' => 'required',
-        'idopont' => 'required|date',
+        'fordulo_nev',
+        'idopont',
         'verseny_szamId',
     ];
 
@@ -35,5 +36,10 @@ class Fordulo extends Model
     }
     public function verseny(): BelongsTo{
         return $this->belongsTo(Verseny::class, 'verseny_szamId');
+    }
+
+    public function versenyzok(): HasMany
+    {
+        return $this->hasMany(Versenyzok::class, 'forudloId');
     }
 }

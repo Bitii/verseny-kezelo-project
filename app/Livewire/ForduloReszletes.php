@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Versenyzok;
 use Livewire\Component;
 use App\Models\Verseny;
 use App\Models\User;
@@ -12,7 +13,8 @@ class ForduloReszletes extends Component
     public $felhasznalok;
     public $fordulok;
     public $versenyek;
-    public $selectedUsers = [];
+    public $versenyzok;
+    public $selectedUsers=[];
 
     public function mount($id){
         $this->felhasznalok = User::all();
@@ -20,9 +22,20 @@ class ForduloReszletes extends Component
         $verseny_szamId = $this->fordulok->first()->verseny_szamId;
         $this->versenyek = Verseny::where('verseny_szamId', $verseny_szamId)->get();
     }
+
+    public function save(){
+        $this->validate([
+        ]);
+
+        try {
+            $versenyzo = new Versenyzok();
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+    }
     public function render()
     {
         
-        return view('livewire.forduloReszletes', ['felhasznalok' => $this->felhasznalok]);
+        return view('livewire.forduloReszletes');
     }
 }

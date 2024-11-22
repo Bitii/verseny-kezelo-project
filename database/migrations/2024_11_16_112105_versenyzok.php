@@ -1,8 +1,10 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+use App\Models\User;
+use App\Models\Fordulo;
 
 return new class extends Migration
 {
@@ -14,8 +16,8 @@ return new class extends Migration
         Schema::create('versenyzok', function (Blueprint $table) {
             $table->id('versenyzoId')->primary();
             $table->string('nev', 100);
-            $table->foreignId('felhasznaloId')->references('felhasznaloId')->on('felhasznalok');
-            $table->foreignId('forduloId')->references('forduloId')->on('fordulok');
+            $table->foreignIdFor(User::class, 'felhasznaloId');
+            $table->foreignIdFor(Fordulo::class, 'forudloId');
         });
     }
 
