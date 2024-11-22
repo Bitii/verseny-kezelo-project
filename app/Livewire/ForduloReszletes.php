@@ -14,7 +14,6 @@ class ForduloReszletes extends Component
     public $fordulok;
     public $versenyek;
     public $versenyzok;
-    public $selectedUsers=[];
 
     public function mount($id){
         $this->felhasznalok = User::all();

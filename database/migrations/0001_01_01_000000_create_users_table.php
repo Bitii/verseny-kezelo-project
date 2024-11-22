@@ -14,8 +14,7 @@ return new class extends Migration
         Schema::create('felhasznalok', function (Blueprint $table) {
             $table->id('felhasznaloId')->primary();
             $table->string('email', 255)->unique();
-            $table->string('vezeteknev', 50);
-            $table->string('keresztnev', 50);
+            $table->string('nev', 50);
             $table->string('telefonszam', 20);
             $table->string('lakcim', 255);
             $table->timestamp('email_verified_at')->nullable();
