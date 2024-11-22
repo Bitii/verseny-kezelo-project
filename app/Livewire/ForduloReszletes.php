@@ -14,27 +14,64 @@ class ForduloReszletes extends Component
     public $fordulok;
     public $versenyek;
     public $versenyzok;
+    public $nev;
+    public $verseny_szamId;
 
-    public function mount($id){
-        $this->felhasznalok = User::all();
-        $this->fordulok = Fordulo::where('forduloId', $id)->get();
-        $verseny_szamId = $this->fordulok->first()->verseny_szamId;
-        $this->versenyek = Verseny::where('verseny_szamId', $verseny_szamId)->get();
+    protected $listeners = ['versenyzoAdded' => '$refresh', 'versenyzoDeleted' => '$refresh'];
+
+    public function mount($id)
+    {
+        $this->felhasznalok = User::all() ?? collect();
+        $this->fordulok = Fordulo::where('forduloId', $id)->get() ?? collect();
+        $this->verseny_szamId = $this->fordulok->first()->verseny_szamId  ?? collect();
+        $this->versenyek = Verseny::where('verseny_szamId', $this->verseny_szamId)->get() ?? collect();
+        $this->versenyzok = Versenyzok::all() ?? collect();
     }
 
-    public function save(){
+    public function save()
+    {
         $this->validate([
+            'nev' => 'required|exists:felhasznalok,nev',
         ]);
 
         try {
-            $versenyzo = new Versenyzok();
-        } catch (\Throwable $th) {
-            //throw $th;
+            $felhasznalo = User::where('nev', $this->nev)->firstOrFail();
+            $letezoVersenyzo = Versenyzok::where('felhasznaloId', $felhasznalo->felhasznaloId)->first();
+
+            if ($letezoVersenyzo) {
+                $this->nev = "";
+                session()->flash('error', 'Ez a felhasználó már létezik a versenyzők között.');
+                return;
+            }
+
+            $versenyzok = new Versenyzok();
+            $versenyzok->nev = $felhasznalo->nev;
+            $versenyzok->felhasznaloId = $felhasznalo->felhasznaloId;
+            $versenyzok->forudloId = $this->fordulok->first()->forduloId;
+            $versenyzok->save();
+
+            $this->reset('nev');
+            $this->versenyzok = Versenyzok::all();
+
+            session()->flash('message', 'A versenyző sikeresen hozzáadva!');
+            $this->dispatch('versenyzoAdded');
+        } catch (\Exception $e) {
+            session()->flash('error', 'Hiba történt a versenyző hozzáadásakor: ' . $e->getMessage());
         }
     }
+
+    public function delVersenyzo($versenyzo_id)
+    {
+        $versenyzo = Versenyzok::find($versenyzo_id);
+        $versenyzo->delete();
+
+        // Update the versenyzok variable
+        $this->versenyzok = Versenyzok::all();
+        $this->dispatch('versenyzoDeleted');
+    }
+
     public function render()
     {
-        
-        return view('livewire.forduloReszletes');
+        return view('livewire.forduloReszletes', ['versenyzok' => $this->versenyzok]);
     }
 }
