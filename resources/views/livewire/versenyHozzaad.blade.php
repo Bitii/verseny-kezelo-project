@@ -27,7 +27,7 @@
 
                 <div class="mb-3">
                     <label for="goodpoints" class="form-label">Pontok jó válaszért:</label>
-                    <input type="text" class="form-control" id="goodpoints" wire:model="points"
+                    <input type="number" class="form-control" id="goodpoints" wire:model="points"
                         value="{{ old('goodpoints') }}">
                     @error('points')
                         <div class="text-danger">{{ $message }}</div>
@@ -36,7 +36,7 @@
 
                 <div class="mb-3">
                     <label for="badpoints" class="form-label">Pontok rossz válaszért:</label>
-                    <input type="text" class="form-control" id="badpoints" wire:model="badpoints"
+                    <input type="number" class="form-control" id="badpoints" wire:model="badpoints"
                         value="{{ old('badpoints') }}">
                     @error('badpoints')
                         <div class="text-danger">{{ $message }}</div>
@@ -45,7 +45,7 @@
 
                 <div class="mb-3">
                     <label for="emptypoints" class="form-label">Pontok nem adott válaszért:</label>
-                    <input type="text" class="form-control" id="emptypoints" wire:model="emptypoints"
+                    <input type="number" class="form-control" id="emptypoints" wire:model="emptypoints"
                         value="{{ old('emptypoints') }}">
                     @error('emptypoints')
                         <div class="text-danger">{{ $message }}</div>
@@ -69,6 +69,11 @@
                 @if (session()->has('message'))
                     <div class="alert alert-success">
                         {{ session('message') }}
+                    </div>
+                @endif
+                @if (session()->has('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
                     </div>
                 @endif
 

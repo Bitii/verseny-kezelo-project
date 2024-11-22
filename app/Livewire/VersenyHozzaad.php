@@ -37,7 +37,7 @@ class VersenyHozzaad extends Component
             $verseny->pontok_jo = $this->points;
             $verseny->pontok_rossz = $this->badpoints;
             $verseny->pontok_ures = $this->emptypoints;
-            $verseny->elerheto_nyelvek = $this->language;
+            $verseny->elerheto_nyelv = $this->language;
             $verseny->save();
 
             session()->flash('message', 'A verseny sikeresen hozzáadva!');

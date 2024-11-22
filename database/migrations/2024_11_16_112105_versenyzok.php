@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id('versenyzoId')->primary();
             $table->string('nev', 100);
             $table->foreignIdFor(User::class, 'felhasznaloId');
-            $table->foreignIdFor(Fordulo::class, 'forudloId');
+            $table->foreignIdFor(Fordulo::class, 'forduloId');
         });
     }
 

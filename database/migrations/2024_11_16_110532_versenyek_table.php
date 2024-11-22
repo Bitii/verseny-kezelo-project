@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('pontok_jo');
             $table->integer('pontok_rossz');
             $table->integer('pontok_ures');
-            $table->string('elerheto_nyelvek', 255);
+            $table->string('elerheto_nyelv', 5);
         });
     }
 

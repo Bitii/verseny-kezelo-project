@@ -17,7 +17,6 @@ class ForduloReszletes extends Component
     public $nev;
     public $verseny_szamId;
 
-    protected $listeners = ['versenyzoAdded' => '$refresh', 'versenyzoDeleted' => '$refresh'];
 
     public function mount($id)
     {
@@ -25,7 +24,7 @@ class ForduloReszletes extends Component
         $this->fordulok = Fordulo::where('forduloId', $id)->get() ?? collect();
         $this->verseny_szamId = $this->fordulok->first()->verseny_szamId  ?? collect();
         $this->versenyek = Verseny::where('verseny_szamId', $this->verseny_szamId)->get() ?? collect();
-        $this->versenyzok = Versenyzok::all() ?? collect();
+        $this->versenyzok = Versenyzok::where('forduloId', $id)->get() ?? collect();
     }
 
     public function save()
@@ -36,7 +35,9 @@ class ForduloReszletes extends Component
 
         try {
             $felhasznalo = User::where('nev', $this->nev)->firstOrFail();
-            $letezoVersenyzo = Versenyzok::where('felhasznaloId', $felhasznalo->felhasznaloId)->first();
+            $letezoVersenyzo = Versenyzok ::where('felhasznaloId', $felhasznalo->felhasznaloId)
+                ->where('forduloId', $this->fordulok->first()->forduloId)
+                ->first();
 
             if ($letezoVersenyzo) {
                 $this->nev = "";
@@ -47,14 +48,13 @@ class ForduloReszletes extends Component
             $versenyzok = new Versenyzok();
             $versenyzok->nev = $felhasznalo->nev;
             $versenyzok->felhasznaloId = $felhasznalo->felhasznaloId;
-            $versenyzok->forudloId = $this->fordulok->first()->forduloId;
+            $versenyzok->forduloId = $this->fordulok->first()->forduloId;
             $versenyzok->save();
 
             $this->reset('nev');
-            $this->versenyzok = Versenyzok::all();
+            $this->versenyzok = Versenyzok::where('forduloId', $this->fordulok->first()->forduloId)->get();
 
             session()->flash('message', 'A versenyző sikeresen hozzáadva!');
-            $this->dispatch('versenyzoAdded');
         } catch (\Exception $e) {
             session()->flash('error', 'Hiba történt a versenyző hozzáadásakor: ' . $e->getMessage());
         }
@@ -66,8 +66,7 @@ class ForduloReszletes extends Component
         $versenyzo->delete();
 
         // Update the versenyzok variable
-        $this->versenyzok = Versenyzok::all();
-        $this->dispatch('versenyzoDeleted');
+        $this->versenyzok = Versenyzok::where('forduloId', $this->fordulok->first()->forduloId)->get();
     }
 
     public function render()
