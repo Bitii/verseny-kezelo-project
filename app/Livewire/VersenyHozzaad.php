@@ -16,6 +16,9 @@ class VersenyHozzaad extends Component
     public string $language;
     public string $message;
 
+    public function create(){
+        
+    }
     public function save()
     {
         $this->validate([

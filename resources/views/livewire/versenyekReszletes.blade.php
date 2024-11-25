@@ -20,7 +20,7 @@
                             <span><strong>Pontok üresen hagyott válaszért:</strong> {{ $verseny->pontok_ures }}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <span><strong>Verseny nyelve:</strong> {{ $verseny->elerheto_nyelvek }}</span>
+                            <span><strong>Verseny nyelve:</strong> {{ $verseny->elerheto_nyelv }}</span>
                         </li>
                     </div>
                 </div>
